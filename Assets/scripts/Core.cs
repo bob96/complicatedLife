@@ -28,6 +28,7 @@ public class Core : MonoBehaviour {
 
     private void Start()
     {
+        nodeCount = coreSize;
         coreBox = new Vector3(1.5f, 1.5f, 0);
         if (!GameController.instantiated)
         {

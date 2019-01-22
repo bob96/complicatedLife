@@ -32,7 +32,7 @@ public class DestroyByContact : MonoBehaviour {
             other.gameObject.GetComponent<Renderer>().material.color = new Color(0.400f, 0.400f, 0.255f);
             Core.nodeCount++;
             Core.goodNodeCount--;
-            Core.badNodeCount--;
+            
             Destroy(gameObject);
         }
         else if(other.gameObject.tag == "CorruptedNode" && gameObject.tag == "Heart")
@@ -46,6 +46,7 @@ public class DestroyByContact : MonoBehaviour {
         
         if (other.gameObject.tag == "Player" && gameObject.tag == "Virus")
         {
+            PlayerController.score++;
             Destroy(gameObject);
         }
     }

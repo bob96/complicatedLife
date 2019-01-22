@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour {
 
-    private int level;
+    public static int level;
     private Core core;
     public GameObject corePrefab;
     public static bool instantiated = false;
@@ -26,20 +26,19 @@ public class GameController : MonoBehaviour {
         
     }
 
-
-
     void UpgradeCore()
     {
         
         Core.coreSize = level * 2 + 10;
         Debug.Log("black :" + Core.badNodeCount + "Normal:" + Core.coreSize);
-        Core.nodeCount = Core.coreSize; ;
+        Core.nodeCount = Core.coreSize;
+        PlayerController.score += 100;
         Core.goodNodeCount = 0;
         GameObject coreGo = Instantiate(corePrefab, transform.position, Quaternion.identity);
         core = coreGo.GetComponent<Core>();
         core.CoreGenerator();
         
-
+        
     }
     private void FixedUpdate()
     {
@@ -55,6 +54,14 @@ public class GameController : MonoBehaviour {
             if (GameObject.FindGameObjectWithTag("Core") == null) return;
             Destroy(GameObject.FindGameObjectWithTag("Core"));
             UpgradeCore();
+        }
+    }
+
+    private void Update()
+    {
+        if (gameOver)
+        {
+            UIController.instance.GameOverPannel();
         }
     }
 

@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour {
 
     public float rotationSpeed;
-
+    public static int score;
     private Rigidbody rb;
 
     private void Start()
